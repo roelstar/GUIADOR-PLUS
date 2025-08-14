@@ -289,7 +289,7 @@ elif st.session_state.fase == 2:
 
         # --- HIMNOS ---
         if himnos_tuples:
-            pdf.set_font("DejaVu", 'B', 12)
+            pdf.set_font("DejaVu", 'BU', 12)
             pdf.cell(0, 8, clean_text_for_pdf("HIMNOS:"), ln=True)
             pdf.set_font("DejaVu", '', 11)
             for num, tit in himnos_tuples:
@@ -303,7 +303,7 @@ elif st.session_state.fase == 2:
         # --- COROS ---
         if coros_tuples:
             pdf.ln(2)
-            pdf.set_font("DejaVu", 'B', 12)
+            pdf.set_font("DejaVu", 'BU', 12)
             pdf.cell(0, 8, clean_text_for_pdf("COROS:"), ln=True)
             pdf.set_font("DejaVu", '', 11)
             for num, tit in coros_tuples:
@@ -317,7 +317,7 @@ elif st.session_state.fase == 2:
         # --- CORO DIEZMO ---
         if coro_diezmo_num and coro_diezmo_tit:
             pdf.ln(4)
-            pdf.set_font("DejaVu", 'B', 11)
+            pdf.set_font("DejaVu", 'BU', 11)
             pdf.cell(0, 6, clean_text_for_pdf("CORO DIEZMO:"), ln=1)
             pdf.set_font("DejaVu", '', 11)
             line = f"{clean_text_for_pdf(str(coro_diezmo_num))}  {clean_text_for_pdf(coro_diezmo_tit)}"
@@ -326,7 +326,7 @@ elif st.session_state.fase == 2:
         # --- CORO FINAL ---
         if coro_final_num and coro_final_tit:
             pdf.ln(4)
-            pdf.set_font("DejaVu", 'B', 11)
+            pdf.set_font("DejaVu", 'BU', 11)
             pdf.cell(0, 6, clean_text_for_pdf("CORO FINAL:"), ln=1)
             pdf.set_font("DejaVu", '', 11)
             line = f"{clean_text_for_pdf(str(coro_final_num))}  {clean_text_for_pdf(coro_final_tit)}"
@@ -334,14 +334,14 @@ elif st.session_state.fase == 2:
 
         # --- PREDICADOR ---
         pdf.ln(4)
-        pdf.set_font("DejaVu", 'B', 11)
+        pdf.set_font("DejaVu", 'BU', 11)
         pdf.cell(0, 6, clean_text_for_pdf("PREDICADOR:"), ln=1)
         pdf.set_font("DejaVu", '', 11)
         pdf.multi_cell(0, 6, clean_text_for_pdf(predicador))
 
         # --- NOTAS ---
         pdf.ln(4)
-        pdf.set_font("DejaVu", 'B', 11)
+        pdf.set_font("DejaVu", 'BU', 11)
         pdf.cell(0, 6, clean_text_for_pdf("NOTA:"), ln=1)
 
         # Ajuste de posición y padding
@@ -353,7 +353,7 @@ elif st.session_state.fase == 2:
         pdf.set_fill_color(230, 230, 230)  # Gris muy claro
 
         pdf.set_xy(x + padding, y)
-        pdf.set_font("DejaVu", '', 11)
+        pdf.set_font("DejaVu", '', 10)
         pdf.multi_cell(0, 5, clean_text_for_pdf(notas), fill=True)
 
     # ✅ Exportar correctamente a bytes
