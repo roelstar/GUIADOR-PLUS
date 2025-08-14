@@ -351,7 +351,12 @@ elif st.session_state.fase == 2:
         pdf.set_font("DejaVu", '', 11)
         pdf.multi_cell(0, 5, clean_text_for_pdf(notas))
 
-        return bytes(pdf.output(dest='S'))
+        # ✅ Exportar correctamente a bytes
+        pdf_buffer = BytesIO()
+        pdf.output(pdf_buffer)
+        pdf_bytes = pdf_buffer.getvalue()
+        pdf_buffer.close()
+        return pdf_bytes
 
     # -----------------------
     # Botones inferiores
@@ -369,21 +374,18 @@ elif st.session_state.fase == 2:
                          for i in range(st.session_state.config.get("coros",0)) if str(st.session_state.get(f"coro_num_{i}", "")).strip() != ""]
 
             pdf_bytes = create_pdf_bytes(
-                predicador=st.session_state.get("predicador",""),
-                himnos_tuples=himnos_res,
-                coros_tuples=coros_res,
-                coro_diezmo_num=num_diezmo,
-                coro_diezmo_tit=coro_diezmo,
-                coro_final_num=num_final,
-                coro_final_tit=coro_final,
-                notas=st.session_state.get("notas","")
+                st.session_state.get("predicador",""),
+                himnos_res,
+                coros_res,
+                num_diezmo,
+                coro_diezmo,
+                num_final,
+                coro_final,
+                st.session_state.get("notas","")
             )
-            st.download_button("⬇️ Descargar PDF", data=pdf_bytes, file_name="guiador.pdf", mime="application/pdf", use_container_width=True)
-
-    with col1:
-        if st.button("🔙 Volver a Configuración", use_container_width=True):
-            st.session_state.fase = 1
-            st.rerun()
-
-    with col2:
-        st.write("")  # espacio vacío
+            st.download_button(
+                "⬇️ Descargar PDF",
+                data=pdf_bytes,
+                file_name=f"GUIADOR_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
+                mime="application/pdf"
+            )
