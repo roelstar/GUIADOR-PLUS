@@ -387,5 +387,4 @@ elif st.session_state.fase == 2:
             st.session_state.fase = 1
             st.rerun()
 
-    with col2:
-        st.write("")  # espacio vacío
+   
