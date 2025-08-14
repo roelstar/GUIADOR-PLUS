@@ -341,24 +341,24 @@ elif st.session_state.fase == 2:
 
         # --- NOTAS ---
         pdf.ln(4)
-pdf.set_font("DejaVu", 'B', 11)
-pdf.cell(0, 6, clean_text_for_pdf("NOTA:"), ln=1)
+        pdf.set_font("DejaVu", 'B', 11)
+        pdf.cell(0, 6, clean_text_for_pdf("NOTA:"), ln=1)
 
-# Ajuste de posición y padding
-x = pdf.get_x()
-y = pdf.get_y()
-padding = 2
+        # Ajuste de posición y padding
+        x = pdf.get_x()
+        y = pdf.get_y()
+        padding = 2
 
-# Fondo gris clarito
-pdf.set_fill_color(230, 230, 230)  # Gris muy claro
+        # Fondo gris clarito
+        pdf.set_fill_color(230, 230, 230)  # Gris muy claro
 
-pdf.set_xy(x + padding, y)
-pdf.set_font("DejaVu", '', 11)
-pdf.multi_cell(0, 5, clean_text_for_pdf(notas), fill=True)
+        pdf.set_xy(x + padding, y)
+        pdf.set_font("DejaVu", '', 11)
+        pdf.multi_cell(0, 5, clean_text_for_pdf(notas), fill=True)
 
-# ✅ Exportar correctamente a bytes
-pdf_bytes = pdf.output(dest='S').encode('latin1')
-return pdf_bytes
+    # ✅ Exportar correctamente a bytes
+        pdf_bytes = pdf.output(dest='S').encode('latin1')
+        return pdf_bytes
 
 
     # -----------------------
