@@ -11,7 +11,7 @@ from io import BytesIO
 # Configuración Streamlit
 # -----------------------
 st.set_page_config(page_title="GUIADOR IDMJI", page_icon="🎵", layout="centered")
-st.markdown("<p style='text-align:center; font-size:8px;'>By Ing. Rodolfo Ibarra Machuca cel: 3045916809</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; font-size:9px;'>By Ing. Rodolfo Ibarra Machuca cel: 3045916809</p>", unsafe_allow_html=True)
 
 # -----------------------
 # Util: normalizar texto (quitar tildes / espacios)
@@ -386,3 +386,8 @@ elif st.session_state.fase == 2:
                 file_name=f"GUIADOR_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
                 mime="application/pdf"
             )
+
+with col1:
+    if st.button("⬅️ Volver a Configuración", use_container_width=True):
+        st.session_state.fase = 1
+        st.rerun()
