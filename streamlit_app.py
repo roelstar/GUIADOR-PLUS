@@ -29,7 +29,7 @@ def normalize_cols(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 # -----------------------
-# Util: detectar columnas numero/titulo
+# Detectar columnas numero/titulo
 # -----------------------
 def find_column_for_number(df: pd.DataFrame):
     cands = ["numero", "n", "no", "num", "id", "codigo"]
@@ -352,10 +352,7 @@ elif st.session_state.fase == 2:
         pdf.multi_cell(0, 5, clean_text_for_pdf(notas))
 
         # ✅ Exportar correctamente a bytes
-        pdf_buffer = BytesIO()
-        pdf.output(pdf_buffer)
-        pdf_bytes = pdf_buffer.getvalue()
-        pdf_buffer.close()
+        pdf_bytes = pdf.output(dest='S').encode('latin1')
         return pdf_bytes
 
     # -----------------------
